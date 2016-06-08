@@ -32,9 +32,7 @@ public class GUI extends JFrame {
 			showAllStates();
 			tax = chooseState();
 			PriceCalc calc = new PriceCalc(price, tax);
-		
-		
-		
+			
 	}
 	
 	
