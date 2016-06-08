@@ -19,6 +19,7 @@ public class GUI extends JFrame {
 	JComboBox<State> gStates;
 	JLabel gProductPrice;
 	Product currentProduct;
+	State currentState;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -54,6 +55,15 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		gStates.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					Object item = e.getItem();
+					GUI.this.setCurrentState((State)item);
+				}
+			}
+		});
 		this.add(gProducts);
 		this.add(gStates);
 		this.add(gProductPrice);
@@ -67,5 +77,8 @@ public class GUI extends JFrame {
 		currentProduct = p;
 	}
 	
+	private void setCurrentState(State s) {
+		currentState = s;
+	}
 	
 }
