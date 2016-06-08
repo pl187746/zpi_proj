@@ -2,16 +2,16 @@ package zpi;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.*;
 
+import products.Product;
 import products.Products;
 
 
 public class MainTest {
 
-	private static ArrayList productsList;
+	private static ArrayList<Product> productsList;
           
 	@BeforeClass
 	public static void start() {
@@ -23,7 +23,7 @@ public class MainTest {
 	
 	@Test
 	public static void productExistTester() {
-		assertTrue(Arrays.asList(productsList).contains(new String("Cort CZ20 BK")));
+		assertTrue(productsList.contains(new String("Cort CZ20 BK")));
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class MainTest {
 	}
 	
 	@Test 
-	public static void taxesTester() {
+	public static void priceTester() {
 
 	}
 
