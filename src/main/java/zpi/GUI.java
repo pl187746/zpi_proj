@@ -5,12 +5,16 @@ import javax.swing.*;
 
 import products.Product;
 import products.Products;
+import states.State;
+import states.States;
 
 
 public class GUI extends JFrame {
 	
 	Products products = new Products();
+	States states = new States();
 	JComboBox<Product> gProducts;
+	JComboBox<State> gStates;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -33,6 +37,11 @@ public class GUI extends JFrame {
 			gProducts.addItem(p);
 		}
 		this.add(gProducts);
+		gStates = new JComboBox<>();
+		for(State s : states.states) {
+			gStates.addItem(s);
+		}
+		this.add(gStates);
 	}
 
 	private void main2(String[] args) {
