@@ -15,6 +15,7 @@ public class GUI extends JFrame {
 	States states = new States();
 	JComboBox<Product> gProducts;
 	JComboBox<State> gStates;
+	JLabel gProductPrice;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -32,16 +33,18 @@ public class GUI extends JFrame {
 	
 	private GUI() {
 		this.setLayout(new GridLayout(2, 2, 1, 1));
+		gProductPrice = new JLabel("");
+		gStates = new JComboBox<>();
 		gProducts = new JComboBox<>();
 		for(Product p : products.products) {
 			gProducts.addItem(p);
 		}
-		this.add(gProducts);
-		gStates = new JComboBox<>();
 		for(State s : states.states) {
 			gStates.addItem(s);
 		}
+		this.add(gProducts);
 		this.add(gStates);
+		this.add(gProductPrice);
 	}
 
 	private void main2(String[] args) {
