@@ -1,12 +1,19 @@
 package zpi;
+import java.awt.FlowLayout;
 import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 public class GUI {
 	
 	public static void main(String[] args) {
 		GUI gui = new GUI();
-		gui.main2(args);
+//		gui.main2(args);
+		gui.main3(args);
 	}
 
 	public void main2(String[] args) {
@@ -33,10 +40,32 @@ public class GUI {
 		
 	}
 	
+	
+	public void main3(String[] args) {
+		JFrame frame = new JFrame("zpi prototype");
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+
+		JLabel label = new JLabel("This is a label!");
+		JButton button = new JButton();
+		button.setText("Press me");
+		panel.add(label);
+		panel.add(button);
+
+		frame.add(panel);
+		frame.setSize(300, 300);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+
+	}
+	
+	
 	public void showAllProducts()
 	{
 		
 	}
+	
 	public double chooseProduct()
 	{
 		return 0;
