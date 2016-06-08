@@ -25,4 +25,9 @@ public class State {
 	public double getTax() {
 		return tax;
 	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
