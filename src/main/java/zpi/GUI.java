@@ -1,5 +1,7 @@
 package zpi;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -16,6 +18,7 @@ public class GUI extends JFrame {
 	JComboBox<Product> gProducts;
 	JComboBox<State> gStates;
 	JLabel gProductPrice;
+	Product currentProduct;
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -42,6 +45,15 @@ public class GUI extends JFrame {
 		for(State s : states.states) {
 			gStates.addItem(s);
 		}
+		gProducts.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					Object item = e.getItem();
+					GUI.this.setCurrentProduct((Product)item);
+				}
+			}
+		});
 		this.add(gProducts);
 		this.add(gStates);
 		this.add(gProductPrice);
@@ -49,6 +61,10 @@ public class GUI extends JFrame {
 
 	private void main2(String[] args) {
 		this.setVisible(true);
+	}
+	
+	private void setCurrentProduct(Product p) {
+		currentProduct = p;
 	}
 	
 	
