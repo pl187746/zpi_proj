@@ -21,18 +21,27 @@ public class MainTest {
 		productsList = Products.products;
 	}
 	
-	@Test
-	public static void productExistTester() {
-		assertTrue(productsList.contains(new String("Cort CZ20 BK")));
-	}
 	
 	@Test
-	public static void greaterThanZeroElementsTester() {
+	public void greaterThanZeroElementsTester() {
 		assertTrue(productsList.size() > 0);
 	}
 	
+	
+	@Test
+	public void productExistTester() {
+		boolean flag = false;
+		for (Product p: productsList) {
+		    if (p.getName()=="Cort CZ20 BK")
+		    	flag = true;
+		}
+		assertTrue(flag);
+	}
+	
+	
+	
 	@Test 
-	public static void priceTester() {
+	public void priceTester() {
 
 	}
 
