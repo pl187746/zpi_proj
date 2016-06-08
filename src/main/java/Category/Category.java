@@ -9,8 +9,6 @@ package Category;
  *
  * @author student
  */
-public class Category {
-    public static final int GITARA  =1;
-    public static final int GITARA_Basowa  =2;
-    public static final int GITARA_KLASYCZNA = 3;
+public enum Category {
+    GITARA, GITARA_ELEKTRYCZNA,SKRZYPCE
 }
