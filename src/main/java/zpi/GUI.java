@@ -1,4 +1,5 @@
 package zpi;
+import java.awt.GridLayout;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -26,6 +27,7 @@ public class GUI extends JFrame {
 	}
 	
 	private GUI() {
+		this.setLayout(new GridLayout(2, 2, 1, 1));
 		gProducts = new JComboBox<>();
 		for(Product p : products.products) {
 			gProducts.addItem(p);
@@ -33,7 +35,7 @@ public class GUI extends JFrame {
 		this.add(gProducts);
 	}
 
-	public void main2(String[] args) {
+	private void main2(String[] args) {
 		this.setVisible(true);
 	}
 	
