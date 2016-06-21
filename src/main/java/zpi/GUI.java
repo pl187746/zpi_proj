@@ -20,6 +20,7 @@ public class GUI extends JFrame {
 	JComboBox<Product> gProducts;
 	JComboBox<State> gStates;
 	JFormattedTextField gProductPrice;
+	JFormattedTextField gGrossPrice;
 	Product currentProduct;
 	State currentState;
 	
@@ -43,6 +44,8 @@ public class GUI extends JFrame {
 		this.setLayout(new GridLayout(2, 2, 1, 1));
 		gProductPrice = new JFormattedTextField(PRICE_FMT);
 		gProductPrice.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
+		gGrossPrice = new JFormattedTextField(PRICE_FMT);
+		gGrossPrice.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
 		gStates = new JComboBox<>();
 		gProducts = new JComboBox<>();
 		for(Product p : products.products) {
@@ -72,6 +75,7 @@ public class GUI extends JFrame {
 		this.add(gProducts);
 		this.add(gStates);
 		this.add(gProductPrice);
+		this.add(gGrossPrice);
 	}
 
 	private void main2(String[] args) {
