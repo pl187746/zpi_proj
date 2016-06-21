@@ -2,6 +2,8 @@ package zpi;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -17,9 +19,11 @@ public class GUI extends JFrame {
 	States states = new States();
 	JComboBox<Product> gProducts;
 	JComboBox<State> gStates;
-	JLabel gProductPrice;
+	JFormattedTextField gProductPrice;
 	Product currentProduct;
 	State currentState;
+	
+	static final Format PRICE_FMT = new DecimalFormat("0.00");
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -37,7 +41,8 @@ public class GUI extends JFrame {
 	
 	private GUI() {
 		this.setLayout(new GridLayout(2, 2, 1, 1));
-		gProductPrice = new JLabel("");
+		gProductPrice = new JFormattedTextField(PRICE_FMT);
+		gProductPrice.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
 		gStates = new JComboBox<>();
 		gProducts = new JComboBox<>();
 		for(Product p : products.products) {
