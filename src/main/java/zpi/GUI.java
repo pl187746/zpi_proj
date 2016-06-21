@@ -1,4 +1,5 @@
 package zpi;
+
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -6,6 +7,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.ParseException;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -16,7 +18,7 @@ import states.States;
 import Category.Category;
 
 public class GUI extends JFrame {
-	
+
 	Products products = new Products();
 	States states = new States();
 	JComboBox<Product> gProducts;
@@ -26,9 +28,9 @@ public class GUI extends JFrame {
 	JFormattedTextField gGrossPrice;
 	Product currentProduct;
 	State currentState;
-	
+
 	static final Format PRICE_FMT = new DecimalFormat("0.00");
-	
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -37,12 +39,12 @@ public class GUI extends JFrame {
 			}
 		});
 	}
-	
+
 	private static void start(String[] args) {
 		GUI gui = new GUI();
 		gui.main2(args);
 	}
-	
+
 	private GUI() {
 		this.setLayout(new GridLayout(2, 2, 1, 1));
 		gProductPrice = new JFormattedTextField(PRICE_FMT);
@@ -52,42 +54,60 @@ public class GUI extends JFrame {
 		gGrossPrice = new JFormattedTextField(PRICE_FMT);
 		gGrossPrice.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
 		gProductPrice.addFocusListener(new FocusListener() {
-			@Override public void focusLost(FocusEvent e) { GUI.this.calcWithNewProductPrice(); }
-			@Override public void focusGained(FocusEvent e) { }
+			@Override
+			public void focusLost(FocusEvent e) {
+				GUI.this.calcWithNewProductPrice();
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+			}
 		});
 		gTaxValue.addFocusListener(new FocusListener() {
-			@Override public void focusLost(FocusEvent e) { GUI.this.calcWithNewTaxValue(); }
-			@Override public void focusGained(FocusEvent e) { }
+			@Override
+			public void focusLost(FocusEvent e) {
+				GUI.this.calcWithNewTaxValue();
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+			}
 		});
 		gGrossPrice.addFocusListener(new FocusListener() {
-			@Override public void focusLost(FocusEvent e) { GUI.this.calcWithNewGrossPrice(); }
-			@Override public void focusGained(FocusEvent e) { }
+			@Override
+			public void focusLost(FocusEvent e) {
+				GUI.this.calcWithNewGrossPrice();
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+			}
 		});
 		gStates = new JComboBox<>();
 		gProducts = new JComboBox<>();
-		for(Product p : products.products) {
+		for (Product p : products.products) {
 			gProducts.addItem(p);
 		}
-		for(State s : states.states) {
+		for (State s : states.states) {
 			gStates.addItem(s);
 		}
-		setCurrentProduct((Product)gProducts.getSelectedItem());
-		setCurrentState((State)gStates.getSelectedItem());
+		setCurrentProduct((Product) gProducts.getSelectedItem());
+		setCurrentState((State) gStates.getSelectedItem());
 		gProducts.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
 					Object item = e.getItem();
-					GUI.this.setCurrentProduct((Product)item);
+					GUI.this.setCurrentProduct((Product) item);
 				}
 			}
 		});
 		gStates.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
 					Object item = e.getItem();
-					GUI.this.setCurrentState((State)item);
+					GUI.this.setCurrentState((State) item);
 				}
 			}
 		});
@@ -102,27 +122,27 @@ public class GUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-	
+
 	private void setCurrentProduct(Product p) {
 		currentProduct = p;
 		setValues();
 	}
-	
+
 	private void setCurrentState(State s) {
 		currentState = s;
 		setValues();
 	}
-	
+
 	private double currentTax() {
-		if(currentState == null)
+		if (currentState == null)
 			return 0.0;
 		Category category = Category.GITARA;
 		Double tax = currentState.getTax(category);
 		return (tax == null ? 0.0 : tax.doubleValue());
 	}
-	
+
 	private void setValues() {
-		if(currentProduct == null || currentState == null)
+		if (currentProduct == null || currentState == null)
 			return;
 		double netPrice = currentProduct.getPrice();
 		double tax = currentTax();
@@ -132,17 +152,60 @@ public class GUI extends JFrame {
 		gTaxValue.setValue(taxValue);
 		gGrossPrice.setValue(grossPrice);
 	}
-	
+
+	private double getFieldValue(JFormattedTextField field) throws ParseException {
+		field.commitEdit();
+		return ((Number)field.getValue()).doubleValue();
+	}
+
 	private void calcWithNewProductPrice() {
-		;
+		try {
+			if (currentProduct == null || currentState == null)
+				return;
+			double netPrice = getFieldValue(gProductPrice);
+			double tax = currentTax();
+			double taxValue = netPrice * tax;
+			double grossPrice = netPrice + taxValue;
+			gProductPrice.setValue(netPrice);
+			gTaxValue.setValue(taxValue);
+			gGrossPrice.setValue(grossPrice);
+		} catch (Exception e) {
+		}
 	}
-	
+
 	private void calcWithNewTaxValue() {
-		;
+		try { 
+			if (currentProduct == null || currentState == null)
+				return;
+			double tax = currentTax();
+			if (tax == 0.0) {
+				gTaxValue.setValue(0.0);
+			} else {
+				double taxValue = getFieldValue(gTaxValue);
+				double netPrice = taxValue / tax;
+				double grossPrice = netPrice + taxValue;
+				gProductPrice.setValue(netPrice);
+				gTaxValue.setValue(taxValue);
+				gGrossPrice.setValue(grossPrice);
+			}
+		} catch (Exception e) {
+		}
 	}
-	
+
 	private void calcWithNewGrossPrice() {
-		;
+		try {
+			if (currentProduct == null || currentState == null)
+				return;
+			double tax = currentTax();
+			double grossPrice = getFieldValue(gGrossPrice);
+			double netPrice = grossPrice / (1.0 + tax);
+			double taxValue = grossPrice - netPrice;
+			gProductPrice.setValue(netPrice);
+			gTaxValue.setValue(taxValue);
+			gGrossPrice.setValue(grossPrice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }
