@@ -2,33 +2,47 @@ package zpi;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.*;
 
+import products.Product;
+import products.Products;
+
+
 public class MainTest {
 
-	private static ArrayList testList;
+	private static ArrayList<Product> productsList;
           
 	@BeforeClass
 	public static void start() {
 		System.out.println("@BeforeClass: executed once before all");
 		Zpi productMain = new Zpi();
+		Products Products = new Products();
+		productsList = Products.products;
 	}
 	
-	@Test
-	public static void productExistTester() {
-		assertTrue(Arrays.asList(testList).contains(new String("Poland")));
-	}
 	
 	@Test
-	public static void numberOfElementsTester() {
-		
+	public void greaterThanZeroElementsTester() {
+		assertTrue(productsList.size() > 0);
 	}
+	
+	
+	@Test
+	public void productExistTester() {
+		boolean flag = false;
+		for (Product p: productsList) {
+		    if (p.getName()=="Cort CZ20 BK")
+		    	flag = true;
+		}
+		assertTrue(flag);
+	}
+	
+	
 	
 	@Test 
-	public static void taxesTester() {
-		
+	public void priceTester() {
+
 	}
 
 	
