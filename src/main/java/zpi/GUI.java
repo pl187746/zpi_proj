@@ -1,7 +1,6 @@
 package zpi;
 
 import java.awt.Container;
-import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
@@ -9,14 +8,20 @@ import java.awt.event.ItemListener;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.ParseException;
-import java.util.Scanner;
-import javax.swing.*;
 
+import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import Category.Category;
 import products.Product;
 import products.Products;
 import states.State;
 import states.States;
-import Category.Category;
 
 public class GUI extends JFrame {
 

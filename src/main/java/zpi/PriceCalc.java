@@ -44,6 +44,7 @@ public class PriceCalc {
 			return;
 		this.taxValue = taxValue;
 		this.netPrice = taxValue / tax;
+		this.grossPrice = this.netPrice + taxValue;
 	}
 
 	public void setGrossPrice(double grossPrice) {
