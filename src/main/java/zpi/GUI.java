@@ -1,79 +1,84 @@
 package zpi;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Scanner;
 import javax.swing.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import products.Product;
+import products.Products;
+import states.State;
+import states.States;
 
 
 public class GUI extends JFrame {
 	
+	Products products = new Products();
+	States states = new States();
+	JComboBox<Product> gProducts;
+	JComboBox<State> gStates;
+	JLabel gProductPrice;
+	Product currentProduct;
+	State currentState;
+	
 	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				GUI.start(args);
+			}
+		});
+	}
+	
+	private static void start(String[] args) {
 		GUI gui = new GUI();
-//		gui.main2(args);
-		gui.main3(args);
+		gui.main2(args);
+	}
+	
+	private GUI() {
+		this.setLayout(new GridLayout(2, 2, 1, 1));
+		gProductPrice = new JLabel("");
+		gStates = new JComboBox<>();
+		gProducts = new JComboBox<>();
+		for(Product p : products.products) {
+			gProducts.addItem(p);
+		}
+		for(State s : states.states) {
+			gStates.addItem(s);
+		}
+		gProducts.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					Object item = e.getItem();
+					GUI.this.setCurrentProduct((Product)item);
+				}
+			}
+		});
+		gStates.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					Object item = e.getItem();
+					GUI.this.setCurrentState((State)item);
+				}
+			}
+		});
+		this.add(gProducts);
+		this.add(gStates);
+		this.add(gProductPrice);
 	}
 
-	public void main2(String[] args) {
-		String[] data = { "aa" };
-		JList<String> list = new JList<String>(data);
-		
-		this.add(list);
+	private void main2(String[] args) {
 		this.setVisible(true);
-		double price;
-		double tax;
-		int flag = 0;
-
-			showAllProducts();
-			price = chooseProduct();
-			showAllStates();
-			tax = chooseState();
-			PriceCalc calc = new PriceCalc(price, tax);
-			
 	}
 	
-	
-	public void main3(String[] args) {
-		JFrame frame = new JFrame("zpi prototype");
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
-
-		JLabel label = new JLabel("This is a label!");
-		JButton button = new JButton();
-		button.setText("Press me");
-		panel.add(label);
-		panel.add(button);
-
-		frame.add(panel);
-		frame.setSize(300, 300);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-
+	private void setCurrentProduct(Product p) {
+		currentProduct = p;
 	}
 	
-	
-	public void showAllProducts()
-	{
-		//String[] data = { Product.getName() };
-		//JList<String> list = new JList<String>(data);
-	}
-	
-	public double chooseProduct()
-	{
-		return 0;
-	}
-	
-	public void showAllStates()
-	{
-		
-	}
-	public double chooseState()
-	{
-		return (double) 0.1;
+	private void setCurrentState(State s) {
+		currentState = s;
 	}
 	
 }
