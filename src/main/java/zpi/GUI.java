@@ -1,5 +1,6 @@
 package zpi;
 
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -23,6 +24,8 @@ public class GUI extends JFrame {
 	States states = new States();
 	JComboBox<Product> gProducts;
 	JComboBox<State> gStates;
+	JLabel gCategory;
+	JLabel gTax;
 	JFormattedTextField gProductPrice;
 	JFormattedTextField gTaxValue;
 	JFormattedTextField gGrossPrice;
@@ -47,7 +50,10 @@ public class GUI extends JFrame {
 	}
 
 	private GUI() {
-		this.setLayout(new GridLayout(2, 2, 1, 1));
+		Container content = this.getContentPane();
+		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		gCategory = new JLabel();
+		gTax = new JLabel();
 		gProductPrice = new JFormattedTextField(PRICE_FMT);
 		gProductPrice.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
 		gTaxValue = new JFormattedTextField(PRICE_FMT);
@@ -112,11 +118,22 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		this.add(gProducts);
-		this.add(gStates);
-		this.add(gProductPrice);
-		this.add(gTaxValue);
-		this.add(gGrossPrice);
+		JPanel p1 = new JPanel();
+		p1.setLayout(new BoxLayout(p1, BoxLayout.X_AXIS));
+		p1.add(gProducts);
+		p1.add(gCategory);
+		JPanel p2 = new JPanel();
+		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
+		p2.add(gStates);
+		p2.add(gTax);
+		JPanel p3 = new JPanel();
+		p3.setLayout(new BoxLayout(p3, BoxLayout.X_AXIS));
+		p3.add(gProductPrice);
+		p3.add(gTaxValue);
+		p3.add(gGrossPrice);
+		content.add(p1);
+		content.add(p2);
+		content.add(p3);
 	}
 
 	private void main2(String[] args) {
@@ -151,9 +168,12 @@ public class GUI extends JFrame {
 	private void setValues() {
 		if (currentProduct == null || currentState == null)
 			return;
+		Category category = Category.GITARA;
 		double netPrice = currentProduct.getPrice();
 		double tax = currentTax();
 		currentPriceCalc = new PriceCalc(netPrice, tax);
+		gCategory.setText(category.toString());
+		gTax.setText(String.format("%.2f%%", tax * 100));
 		setFields();
 	}
 
@@ -192,7 +212,6 @@ public class GUI extends JFrame {
 			currentPriceCalc.setGrossPrice(grossPrice);
 			setFields();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
