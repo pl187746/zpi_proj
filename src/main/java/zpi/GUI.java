@@ -75,6 +75,7 @@ public class GUI extends JFrame {
 	}
 
 	private void main2(String[] args) {
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 	
