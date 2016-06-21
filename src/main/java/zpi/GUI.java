@@ -28,6 +28,7 @@ public class GUI extends JFrame {
 	JFormattedTextField gGrossPrice;
 	Product currentProduct;
 	State currentState;
+	PriceCalc currentPriceCalc;
 
 	static final Format PRICE_FMT = new DecimalFormat("0.00");
 
@@ -140,17 +141,20 @@ public class GUI extends JFrame {
 		Double tax = currentState.getTax(category);
 		return (tax == null ? 0.0 : tax.doubleValue());
 	}
+	
+	private void setFields() {
+		gProductPrice.setValue(currentPriceCalc.getNetPrice());
+		gTaxValue.setValue(currentPriceCalc.getTaxValue());
+		gGrossPrice.setValue(currentPriceCalc.getGrossPrice());
+	}
 
 	private void setValues() {
 		if (currentProduct == null || currentState == null)
 			return;
 		double netPrice = currentProduct.getPrice();
 		double tax = currentTax();
-		double taxValue = netPrice * tax;
-		double grossPrice = netPrice + taxValue;
-		gProductPrice.setValue(netPrice);
-		gTaxValue.setValue(taxValue);
-		gGrossPrice.setValue(grossPrice);
+		currentPriceCalc = new PriceCalc(netPrice, tax);
+		setFields();
 	}
 
 	private double getFieldValue(JFormattedTextField field) throws ParseException {
@@ -163,12 +167,8 @@ public class GUI extends JFrame {
 			if (currentProduct == null || currentState == null)
 				return;
 			double netPrice = getFieldValue(gProductPrice);
-			double tax = currentTax();
-			double taxValue = netPrice * tax;
-			double grossPrice = netPrice + taxValue;
-			gProductPrice.setValue(netPrice);
-			gTaxValue.setValue(taxValue);
-			gGrossPrice.setValue(grossPrice);
+			currentPriceCalc.setNetPrice(netPrice);
+			setFields();
 		} catch (Exception e) {
 		}
 	}
@@ -177,17 +177,9 @@ public class GUI extends JFrame {
 		try { 
 			if (currentProduct == null || currentState == null)
 				return;
-			double tax = currentTax();
-			if (tax == 0.0) {
-				gTaxValue.setValue(0.0);
-			} else {
-				double taxValue = getFieldValue(gTaxValue);
-				double netPrice = taxValue / tax;
-				double grossPrice = netPrice + taxValue;
-				gProductPrice.setValue(netPrice);
-				gTaxValue.setValue(taxValue);
-				gGrossPrice.setValue(grossPrice);
-			}
+			double taxValue = getFieldValue(gTaxValue);
+			currentPriceCalc.setTaxValue(taxValue);
+			setFields();
 		} catch (Exception e) {
 		}
 	}
@@ -196,13 +188,9 @@ public class GUI extends JFrame {
 		try {
 			if (currentProduct == null || currentState == null)
 				return;
-			double tax = currentTax();
 			double grossPrice = getFieldValue(gGrossPrice);
-			double netPrice = grossPrice / (1.0 + tax);
-			double taxValue = grossPrice - netPrice;
-			gProductPrice.setValue(netPrice);
-			gTaxValue.setValue(taxValue);
-			gGrossPrice.setValue(grossPrice);
+			currentPriceCalc.setGrossPrice(grossPrice);
+			setFields();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
