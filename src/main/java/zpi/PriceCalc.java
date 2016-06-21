@@ -8,9 +8,13 @@ public class PriceCalc {
 	private double grossPrice;
 	
 	public PriceCalc(double netPrice, double tax) {
-		this.netPrice = netPrice;
+		this.netPrice = round2(netPrice);
 		this.tax = tax;
 		calcTaxAndGross();
+	}
+	
+	private static double round2(double x) {
+		return ((long)(x * 100 + 0.5)) / 100.0;
 	}
 
 	public double getTax() {
@@ -35,6 +39,9 @@ public class PriceCalc {
 	}
 
 	public void setNetPrice(double netPrice) {
+		netPrice = round2(netPrice);
+		if(this.netPrice == netPrice)
+			return;
 		this.netPrice = netPrice;
 		calcTaxAndGross();
 	}
@@ -42,20 +49,20 @@ public class PriceCalc {
 	public void setTaxValue(double taxValue) {
 		if(this.tax == 0.0)
 			return;
-		this.taxValue = taxValue;
-		this.netPrice = taxValue / tax;
-		this.grossPrice = this.netPrice + taxValue;
+		taxValue = round2(taxValue);
+		if(this.taxValue != taxValue)
+			setNetPrice(taxValue / tax);
 	}
 
 	public void setGrossPrice(double grossPrice) {
-		this.grossPrice = grossPrice;
-		this.netPrice = grossPrice / (1.0 + this.tax);
-		this.taxValue = grossPrice - this.netPrice;
+		grossPrice = round2(grossPrice);
+		if(this.grossPrice != grossPrice)
+			setNetPrice(grossPrice / (1.0 + this.tax));
 	}
 	
 	private void calcTaxAndGross() {
-		this.taxValue = this.netPrice * tax;
-		this.grossPrice = this.netPrice + this.taxValue;
+		this.taxValue = round2(this.netPrice * tax);
+		this.grossPrice = round2(this.netPrice + this.taxValue);
 	}
 	
 }
