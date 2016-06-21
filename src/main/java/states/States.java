@@ -1,11 +1,11 @@
 package states;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import static zpi.Pair.mapOf;
+import static zpi.Pair.pair;
+
 import java.util.ArrayList;
 
-import products.Product;
+import Category.Category;
 
 
 public class States {
@@ -15,11 +15,11 @@ public class States {
 		
 		states = new ArrayList <State>();
 		
-		states.add(new State("Alabama",0.04));
-		states.add(new State("California",0.072));
-		states.add(new State("Delaware",0.00));
-		states.add(new State("Iowa",0.06));
-		states.add(new State("New York",0.04));
+		states.add(new State("Alabama", mapOf(pair(Category.GITARA, 0.04), pair(Category.SKRZYPCE, 0.01))));
+		states.add(new State("California", mapOf()));
+		states.add(new State("Delaware", mapOf()));
+		states.add(new State("Iowa", mapOf()));
+		states.add(new State("New York", mapOf()));
 		
 	}
 }

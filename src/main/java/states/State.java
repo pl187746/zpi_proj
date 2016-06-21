@@ -1,13 +1,19 @@
 package states;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import Category.Category;
+
 public class State {
 	private String name;
-	private double tax;
+	private Map<Category, Double> taxes;
 	
-	public State(String name, double tax)
+	public State(String name, Map<Category, Double> taxes)
 	{
 		this.name = name;
-		this.tax = tax;
+		this.taxes = new HashMap<>(taxes);
 	}
 
 	public String getName() {
@@ -18,12 +24,16 @@ public class State {
 		this.name = name;
 	}
 
-	public void setTax(double tax) {
-		this.tax = tax;
+	public void setTax(Category category, double value) {
+		this.taxes.put(category, value);
 	}
 
-	public double getTax() {
-		return tax;
+	public Double getTax(Category category) {
+		return taxes.get(category);
+	}
+	
+	public Map<Category, Double> getTaxes() {
+		return Collections.unmodifiableMap(taxes);
 	}
 	
 	@Override
