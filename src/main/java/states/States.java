@@ -36,6 +36,8 @@ public class States {
 				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.07),pair(Category.CLOTHING,0.0))));
 		states.add(new State("Texas", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.0625),
 				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0625))));
+		states.add(new State("North Dakota", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.05),
+				pair(Category.PRESCRIPTION_DRUG,0.05),pair(Category.NON_PRESCRIPTION_DRUG,0.05),pair(Category.CLOTHING,0.05))));
 		
 	}
 }
