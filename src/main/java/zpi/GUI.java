@@ -1,6 +1,7 @@
 package zpi;
 
 import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
@@ -56,7 +57,7 @@ public class GUI extends JFrame {
 
 	private GUI() {
 		Container content = this.getContentPane();
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		content.setLayout(new GridLayout(5, 2));
 		gCategory = new JLabel();
 		gTax = new JLabel();
 		gProductPrice = new JFormattedTextField(PRICE_FMT);
@@ -123,26 +124,16 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		JPanel panProduct = new JPanel();
-		panProduct.add(gProducts);
-		panProduct.add(gCategory);
-		JPanel panState = new JPanel();
-		panState.add(gStates);
-		panState.add(gTax);
-		JPanel p3 = new JPanel();
-		p3.add(new JLabel("Cena netto:"));
-		p3.add(gProductPrice);
-		JPanel p4 = new JPanel();
-		p4.add(new JLabel("Kwota podatku:"));
-		p4.add(gTaxValue);
-		JPanel p5 = new JPanel();
-		p5.add(new JLabel("Cena brutto:"));
-		p5.add(gGrossPrice);
-		content.add(panProduct);
-		content.add(panState);
-		content.add(p3);
-		content.add(p4);
-		content.add(p5);
+		content.add(gProducts);
+		content.add(gCategory);
+		content.add(gStates);
+		content.add(gTax);
+		content.add(new JLabel("Cena netto:"));
+		content.add(gProductPrice);
+		content.add(new JLabel("Kwota podatku:"));
+		content.add(gTaxValue);
+		content.add(new JLabel("Cena brutto:"));
+		content.add(gGrossPrice);
 	}
 
 	private void main2(String[] args) {
