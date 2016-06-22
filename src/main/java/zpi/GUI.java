@@ -133,8 +133,11 @@ public class GUI extends JFrame {
 		p2.add(gTax);
 		JPanel p3 = new JPanel();
 		p3.setLayout(new BoxLayout(p3, BoxLayout.X_AXIS));
+		p3.add(new JLabel("Cena netto:"));
 		p3.add(gProductPrice);
+		p3.add(new JLabel("Kwota podatku:"));
 		p3.add(gTaxValue);
+		p3.add(new JLabel("Cena brutto:"));
 		p3.add(gGrossPrice);
 		content.add(p1);
 		content.add(p2);
