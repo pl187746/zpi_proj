@@ -56,6 +56,7 @@ public class GUI extends JFrame {
 	}
 
 	private GUI() {
+		this.setSize(512, 256);
 		Container content = this.getContentPane();
 		content.setLayout(new GridLayout(5, 2));
 		gCategory = new JLabel();
