@@ -9,7 +9,7 @@ import products.Product;
 import products.Products;
 
 
-public class MainTest {
+public class ProductsTest {
 
 	private static ArrayList<Product> productsList;
           
@@ -47,6 +47,5 @@ public class MainTest {
 
 	
 	
-
 }
 
