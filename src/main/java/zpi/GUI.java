@@ -1,6 +1,9 @@
 package zpi;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
@@ -10,7 +13,10 @@ import java.text.Format;
 import java.text.ParseException;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,7 +46,7 @@ public class GUI extends JFrame {
 
 	static final Format PRICE_FMT = new DecimalFormat("0.00");
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -139,6 +145,29 @@ public class GUI extends JFrame {
 		content.add(p1);
 		content.add(p2);
 		content.add(p3);
+		
+		JPanel p4 = new JPanel();
+		JButton button = new JButton("jednoroz");
+		button.addActionListener(new ActionListener()
+		{
+		@Override
+		  public void actionPerformed(ActionEvent e)
+		  {
+		    // display/center the jdialog when the button is pressed
+//		    JDialog d = new JDialog(frame, "Hello", true);
+//		    d.setLocationRelativeTo(frame);
+		    System.out.println("jednorozec.jpg");
+		  }
+		});
+		
+		p4.add(button);
+		content.add(p4);
+		
+		ImageIcon image = new ImageIcon("resources/jednor.jpg");
+		JLabel label = new JLabel("", image, JLabel.CENTER);
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.add( label, BorderLayout.CENTER );
+		
 	}
 
 	private void main2(String[] args) {
