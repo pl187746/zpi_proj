@@ -123,25 +123,26 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		JPanel p1 = new JPanel();
-		p1.setLayout(new BoxLayout(p1, BoxLayout.X_AXIS));
-		p1.add(gProducts);
-		p1.add(gCategory);
-		JPanel p2 = new JPanel();
-		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
-		p2.add(gStates);
-		p2.add(gTax);
+		JPanel panProduct = new JPanel();
+		panProduct.add(gProducts);
+		panProduct.add(gCategory);
+		JPanel panState = new JPanel();
+		panState.add(gStates);
+		panState.add(gTax);
 		JPanel p3 = new JPanel();
-		p3.setLayout(new BoxLayout(p3, BoxLayout.X_AXIS));
 		p3.add(new JLabel("Cena netto:"));
 		p3.add(gProductPrice);
-		p3.add(new JLabel("Kwota podatku:"));
-		p3.add(gTaxValue);
-		p3.add(new JLabel("Cena brutto:"));
-		p3.add(gGrossPrice);
-		content.add(p1);
-		content.add(p2);
+		JPanel p4 = new JPanel();
+		p4.add(new JLabel("Kwota podatku:"));
+		p4.add(gTaxValue);
+		JPanel p5 = new JPanel();
+		p5.add(new JLabel("Cena brutto:"));
+		p5.add(gGrossPrice);
+		content.add(panProduct);
+		content.add(panState);
 		content.add(p3);
+		content.add(p4);
+		content.add(p5);
 	}
 
 	private void main2(String[] args) {
