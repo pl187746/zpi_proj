@@ -58,5 +58,25 @@ public class States {
 				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0))));
 		states.add(new State("New Jersey", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.07),
 				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.07),pair(Category.CLOTHING,0.0))));
+		states.add(new State("Puerto Rico", mapOf(pair(Category.GROCERUES, 0.01), pair(Category.PREPARED_FOOD, 0.105),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0105),pair(Category.CLOTHING,0.0))));	
+		states.add(new State("Pennsylvania", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.06),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0))));	
+		states.add(new State("Oregon", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.0),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0))));
+		states.add(new State("Oregon", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.0),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0))));	
+		states.add(new State("Indiana", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.09),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.07),pair(Category.CLOTHING,0.07))));	
+		states.add(new State("Hawaii", mapOf(pair(Category.GROCERUES, 0.04166), pair(Category.PREPARED_FOOD, 0.04166),
+				pair(Category.PRESCRIPTION_DRUG,0.04166),pair(Category.NON_PRESCRIPTION_DRUG,0.04166),pair(Category.CLOTHING,0.04166))));	
+		states.add(new State("Maryland", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.06),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.06),pair(Category.CLOTHING,0.06))));	
+		states.add(new State("Colorado", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.029),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.029),pair(Category.CLOTHING,0.029))));	
+		states.add(new State("District of Columbia", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.1),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0575))));	
+		states.add(new State("Illinois", mapOf(pair(Category.GROCERUES, 0.0725), pair(Category.PREPARED_FOOD, 0.145),
+				pair(Category.PRESCRIPTION_DRUG,0.0725),pair(Category.NON_PRESCRIPTION_DRUG,0.0725),pair(Category.CLOTHING,0.0625))));
 	}
 }
