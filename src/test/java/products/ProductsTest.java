@@ -1,4 +1,4 @@
-package zpi;
+package products;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import org.junit.*;
 
 import products.Product;
 import products.Products;
+import zpi.Zpi;
 
 
 public class ProductsTest {
@@ -32,7 +33,7 @@ public class ProductsTest {
 	public void productExistTester() {
 		boolean flag = false;
 		for (Product p: productsList) {
-		    if (p.getName()=="Cort CZ20 BK")
+		    if (p.getName()=="RUTINOSCORBIN")
 		    	flag = true;
 		}
 		assertTrue(flag);
