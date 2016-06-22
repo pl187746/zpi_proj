@@ -7,7 +7,7 @@ public class Product {
         super();
         this.name = name;
         this.price = price;
-        this.category = category;
+        this.setCategory(category);
     }
 
     private String name;
@@ -34,5 +34,13 @@ public class Product {
     public String toString() {
         return this.name;
     }
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }

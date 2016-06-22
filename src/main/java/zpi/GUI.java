@@ -157,9 +157,9 @@ public class GUI extends JFrame {
 	}
 
 	private double currentTax() {
-		if (currentState == null)
+		if (currentProduct == null || currentState == null)
 			return 0.0;
-		Category category = Category.CLOTHING;
+		Category category = currentProduct.getCategory();
 		Double tax = currentState.getTax(category);
 		return (tax == null ? 0.0 : tax.doubleValue());
 	}
@@ -173,7 +173,7 @@ public class GUI extends JFrame {
 	private void setValues() {
 		if (currentProduct == null || currentState == null)
 			return;
-		Category category = Category.CLOTHING;
+		Category category = currentProduct.getCategory();
 		double netPrice = currentProduct.getPrice();
 		double tax = currentTax();
 		currentPriceCalc = new PriceCalc(netPrice, tax);
