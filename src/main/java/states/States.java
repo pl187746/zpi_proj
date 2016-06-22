@@ -78,5 +78,9 @@ public class States {
 				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0575))));	
 		states.add(new State("Illinois", mapOf(pair(Category.GROCERUES, 0.0725), pair(Category.PREPARED_FOOD, 0.145),
 				pair(Category.PRESCRIPTION_DRUG,0.0725),pair(Category.NON_PRESCRIPTION_DRUG,0.0725),pair(Category.CLOTHING,0.0625))));
+		states.add(new State("Texas", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.0625),
+				pair(Category.PRESCRIPTION_DRUG,0.0),pair(Category.NON_PRESCRIPTION_DRUG,0.0),pair(Category.CLOTHING,0.0625))));
+		states.add(new State("North Dakota", mapOf(pair(Category.GROCERUES, 0.0), pair(Category.PREPARED_FOOD, 0.05),
+				pair(Category.PRESCRIPTION_DRUG,0.05),pair(Category.NON_PRESCRIPTION_DRUG,0.05),pair(Category.CLOTHING,0.05))));
 	}
 }
